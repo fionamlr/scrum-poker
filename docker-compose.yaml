@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: scrum-poker-db
+    environment:
+      POSTGRES_USER: scrum
+      POSTGRES_PASSWORD: poker
+      POSTGRES_DB: scrumpoker
+    ports:
+      - "15432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
