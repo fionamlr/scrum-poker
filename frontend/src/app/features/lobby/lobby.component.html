@@ -1,11 +1,15 @@
-<div>
-  <input type="text" #roomNameInput>
-  <button
-    type="button"
-    (click)="createRoom(roomNameInput.value)">
-    {{ 'LOBBY.CREATE_ROOM' | translate }}
-  </button>
-</div>
+<form [formGroup]="lobbyForm" (ngSubmit)="onSubmit()">
+  <div>
+    <input type="text" id="roomNameId" formControlName="roomName" placeholder="{{ 'LOBBY.ROOM_NAME_INPUT' | translate }}">
+  </div>
 
+  <div>
+    <input type="text" id="creatorNameId" formControlName="creatorName" placeholder="{{ 'LOBBY.CREATOR_NAME_INPUT' | translate }}">
+  </div>
+
+  <button type="submit" [disabled]="lobbyForm.invalid">
+    {{ 'LOBBY.CREATE_ROOM_BUTTON' | translate }}
+  </button>
+</form>
 
 

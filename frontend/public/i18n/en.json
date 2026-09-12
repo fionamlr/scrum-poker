@@ -1,10 +1,13 @@
 {
   "LOBBY": {
-    "CREATE_ROOM": "Create Room"
+    "CREATE_ROOM_BUTTON": "Create Room",
+    "ROOM_NAME_INPUT": "Enter room name",
+    "CREATOR_NAME_INPUT": "Enter creator name"
   },
 
   "POKER_TABLE": {
     "TITLE": "Welcome to Scrum Poker!",
-    "TEXT": "Room: "
+    "ROOM_TEXT": "Room: ",
+    "CREATOR_TEXT": "Creator: "
   }
 }

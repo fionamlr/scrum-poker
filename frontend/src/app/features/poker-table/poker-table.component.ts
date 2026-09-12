@@ -13,6 +13,7 @@ import {TranslatePipe} from '@ngx-translate/core';
 })
 export class PokerTableComponent implements OnInit{
   roomName = signal<string>('');
+  creatorName = signal<string>('');
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -26,6 +27,7 @@ export class PokerTableComponent implements OnInit{
       this.roomService.getRoom(roomId).subscribe({
         next: (roomData) => {
           this.roomName.set(roomData.roomName);
+          this.creatorName.set(roomData.creatorName);
         },
         error: (error) => {
           console.error('Error loading the room: ', error);
