@@ -1,5 +1,10 @@
 {
   "LOBBY": {
     "CREATE_ROOM": "Create Room"
+  },
+
+  "POKER_TABLE": {
+    "TITLE": "Welcome to Scrum Poker!",
+    "TEXT": "Room: "
   }
 }

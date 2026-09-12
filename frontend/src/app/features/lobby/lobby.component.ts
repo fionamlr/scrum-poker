@@ -13,7 +13,10 @@ import {Router} from '@angular/router';
   styleUrl: './lobby.component.scss',
 })
 export class LobbyComponent {
-  constructor(private roomService: RoomService, private router: Router) {}
+  constructor(
+    private roomService: RoomService,
+    private router: Router
+  ) {}
 
   createRoom(name: string) {
     const newRoomDTO: RoomDTO = {
@@ -26,7 +29,7 @@ export class LobbyComponent {
         this.router.navigate(['/room', generatedUUID]);
       },
       error: (error) => {
-        console.log('Error while creating room: ', error);
+        console.error('Error while creating room: ', error);
       }
     });
   }
