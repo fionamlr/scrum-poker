@@ -2,9 +2,12 @@ package com.scrumpoker.backend.entity;
 
 import com.scrumpoker.backend.enums.Status;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -24,11 +27,13 @@ public class Room {
 
     private String roomName;
     private String roomDescription;
+
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @CreationTimestamp
     private LocalDateTime creationDate;
 
-    private UUID ownerId;
-    private List<UUID> members;
+    @OneToMany
+    private List<User> participants;
 }
