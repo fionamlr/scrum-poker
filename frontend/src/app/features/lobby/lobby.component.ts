@@ -1,10 +1,12 @@
-import {Component, inject} from '@angular/core';
+import {Component} from '@angular/core';
 import {RoomService} from '../../core/services/roomService';
 import {RoomDTO} from '../../core/models/room.dto';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-lobby',
   imports: [
+    TranslatePipe
   ],
   templateUrl: './lobby.component.html',
   styleUrl: './lobby.component.scss',

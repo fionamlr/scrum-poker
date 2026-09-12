@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {LobbyComponent} from './features/lobby/lobby.component';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,9 @@ import {LobbyComponent} from './features/lobby/lobby.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  private translateService = inject(TranslateService);
+
+  switchLanguage(language: string) {
+    this.translateService.use(language);
+  }
 }
