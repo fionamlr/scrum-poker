@@ -1,6 +1,7 @@
 package com.scrumpoker.backend.entity;
 
 import com.scrumpoker.backend.enums.Status;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -34,6 +35,6 @@ public class Room {
     @CreationTimestamp
     private LocalDateTime creationDate;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<User> participants;
 }

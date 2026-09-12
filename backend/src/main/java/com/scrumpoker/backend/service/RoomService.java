@@ -2,6 +2,8 @@ package com.scrumpoker.backend.service;
 
 import com.scrumpoker.backend.dto.RoomDTO;
 import com.scrumpoker.backend.entity.Room;
+import com.scrumpoker.backend.entity.User;
+import com.scrumpoker.backend.enums.Role;
 import com.scrumpoker.backend.repository.RoomRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,15 @@ public class RoomService {
     public UUID createRoom(RoomDTO roomDTO) {
         Room room = new Room();
         room.setRoomName(roomDTO.getRoomName());
+
+        User moderator = new User();
+        moderator.setName(roomDTO.getCreatorName());
+        moderator.setRole(Role.MODERATOR);
+
+        List<User> participants = new ArrayList<>();
+        participants.add(moderator);
+        room.setParticipants(participants);
+
         return roomRepository.save(room).getRoomId();
     }
 

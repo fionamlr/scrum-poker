@@ -7,4 +7,5 @@ import lombok.Setter;
 @Setter
 public class RoomDTO {
     private String roomName;
+    private String creatorName;
 }
