@@ -1,0 +1,17 @@
+<form [formGroup]="joinRoomForm" (ngSubmit)="onSubmitJoinRoom()">
+  <div>
+    <input type="text" id="joinRoomId" formControlName="roomId" placeholder="{{ 'LOBBY.ROOM_ID_INPUT' | translate }}">
+  </div>
+
+  <div>
+    <input type="text" id="playerNameId" formControlName="playerName" placeholder="{{ 'LOBBY.NAME_INPUT' | translate }}">
+  </div>
+
+  <button type="submit" [disabled]="joinRoomForm.invalid">
+    {{ 'LOBBY.JOIN_ROOM_BUTTON' | translate }}
+  </button>
+
+  <button type="button" (click)="closeDialog()">
+    {{ 'GENERAL.CANCEL' | translate }}
+  </button>
+</form>

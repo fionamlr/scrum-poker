@@ -3,45 +3,54 @@ import {RoomService} from '../../core/services/roomService';
 import {RoomDTO} from '../../core/models/room.dto';
 import {TranslatePipe} from '@ngx-translate/core';
 import {Router} from '@angular/router';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
+import {CreateRoomDialogComponent} from './dialogs/create-room-dialog/create-room-dialog.component';
+import {JoinRoomDialogComponent} from './dialogs/join-room-dialog/join-room-dialog.component';
 
 @Component({
   selector: 'app-lobby',
   imports: [
     TranslatePipe,
-    ReactiveFormsModule
   ],
   templateUrl: './lobby.component.html',
   styleUrl: './lobby.component.scss',
+  standalone: true
 })
 export class LobbyComponent {
-  lobbyForm = new FormGroup({
-    roomName: new FormControl('', { nonNullable: true, validators: Validators.required }),
-    creatorName: new FormControl('', { nonNullable: true, validators: Validators.required }),
-  })
 
   constructor(
+    private dialog: MatDialog,
     private roomService: RoomService,
     private router: Router
   ) {}
 
-  onSubmit() {
-    if (this.lobbyForm.valid) {
-      const formValues = this.lobbyForm.value;
-      const newRoomDTO: RoomDTO = {
-        roomName: formValues.roomName ?? '',
-        creatorName: formValues.creatorName ?? ''
-      }
+  openCreateRoomDialog() {
+    const dialogRef = this.dialog.open(CreateRoomDialogComponent);
 
-      this.roomService.createRoom(newRoomDTO).subscribe({
-        next: (generatedUUID) => {
-          console.log('Room ID: ', generatedUUID);
-          this.router.navigate(['/room', generatedUUID]);
-        },
-        error: (error) => {
-          console.error('Error while creating room: ', error);
-        }
-      });
-    }
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const newRoomDTO: RoomDTO = {
+          roomName: result.roomName,
+          creatorName: result.creatorName
+        };
+        this.roomService.createRoom(newRoomDTO).subscribe({
+          next: (generatedUUID) => {
+            this.router.navigate(['/room', generatedUUID]);
+          },
+          error: (error) => console.error(error)
+        });
+      }
+    })
   }
+
+  openJoinRoomDialog() {
+    const dialogRef = this.dialog.open(JoinRoomDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Methode wird noch implementiert');
+      }
+    });
+  }
+
 }

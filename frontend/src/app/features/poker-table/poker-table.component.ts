@@ -10,6 +10,7 @@ import {TranslatePipe} from '@ngx-translate/core';
   ],
   templateUrl: './poker-table.component.html',
   styleUrl: './poker-table.component.scss',
+  standalone: true
 })
 export class PokerTableComponent implements OnInit{
   roomName = signal<string>('');

@@ -1,15 +1,12 @@
-<form [formGroup]="lobbyForm" (ngSubmit)="onSubmit()">
-  <div>
-    <input type="text" id="roomNameId" formControlName="roomName" placeholder="{{ 'LOBBY.ROOM_NAME_INPUT' | translate }}">
-  </div>
-
-  <div>
-    <input type="text" id="creatorNameId" formControlName="creatorName" placeholder="{{ 'LOBBY.CREATOR_NAME_INPUT' | translate }}">
-  </div>
-
-  <button type="submit" [disabled]="lobbyForm.invalid">
+<div class="lobby-container">
+  <button (click)="openCreateRoomDialog()">
     {{ 'LOBBY.CREATE_ROOM_BUTTON' | translate }}
   </button>
-</form>
+
+  <button (click)="openJoinRoomDialog()">
+    {{ 'LOBBY.JOIN_ROOM_BUTTON' | translate }}
+  </button>
+</div>
+
 
 

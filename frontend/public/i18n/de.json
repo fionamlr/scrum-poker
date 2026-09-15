@@ -1,7 +1,13 @@
 {
+  "GENERAL": {
+    "CANCEL": "Abbrechen"
+  },
+
   "LOBBY": {
     "CREATE_ROOM_BUTTON": "Raum erstellen",
+    "JOIN_ROOM_BUTTON": "Raum beitreten",
     "ROOM_NAME_INPUT": "Raumname eingeben",
+    "ROOM_ID_INPUT": "Raum ID eingeben",
     "CREATOR_NAME_INPUT": "Name eingeben"
   },
 

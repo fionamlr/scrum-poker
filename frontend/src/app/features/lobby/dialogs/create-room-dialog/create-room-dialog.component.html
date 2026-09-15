@@ -1,0 +1,17 @@
+<form [formGroup]="createRoomForm" (ngSubmit)="onSubmitCreateRoom()">
+  <div>
+    <input type="text" id="roomNameId" formControlName="roomName" placeholder="{{ 'LOBBY.ROOM_NAME_INPUT' | translate }}">
+  </div>
+
+  <div>
+    <input type="text" id="creatorNameId" formControlName="creatorName" placeholder="{{ 'LOBBY.NAME_INPUT' | translate }}">
+  </div>
+
+  <button type="submit" [disabled]="createRoomForm.invalid">
+    {{ 'LOBBY.CREATE_ROOM_BUTTON' | translate }}
+  </button>
+
+  <button type="button" (click)="closeDialog()">
+    {{ 'GENERAL.CANCEL' | translate }}
+  </button>
+</form>

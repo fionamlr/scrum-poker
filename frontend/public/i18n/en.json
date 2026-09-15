@@ -1,8 +1,14 @@
 {
+  "GENERAL": {
+    "CANCEL": "Cancel"
+  },
+
   "LOBBY": {
     "CREATE_ROOM_BUTTON": "Create Room",
+    "JOIN_ROOM_BUTTON": "Join Room",
     "ROOM_NAME_INPUT": "Enter room name",
-    "CREATOR_NAME_INPUT": "Enter creator name"
+    "ROOM_ID_INPUT": "Enter room id",
+    "NAME_INPUT": "Enter name"
   },
 
   "POKER_TABLE": {
