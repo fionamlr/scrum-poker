@@ -12,11 +12,12 @@ import {JoinRoomDialogComponent} from './dialogs/join-room-dialog/join-room-dial
   imports: [
     TranslatePipe,
   ],
-  templateUrl: './lobby.component.html',
-  styleUrl: './lobby.component.scss',
+  templateUrl: './startpage.component.html',
+  styleUrl: './startpage.component.scss',
   standalone: true
 })
-export class LobbyComponent {
+export class StartpageComponent {
+  estimationCards: string[] = ['1', '3', '5', '8', '13', '?'];
 
   constructor(
     private dialog: MatDialog,

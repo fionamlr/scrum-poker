@@ -3,7 +3,9 @@
     "CANCEL": "Cancel"
   },
 
-  "LOBBY": {
+  "STARTPAGE": {
+    "HEADLINE": "Agile Estimation",
+    "DESCRIPTION": "Start or join a Scrum Poker session!",
     "CREATE_ROOM_BUTTON": "Create Room",
     "JOIN_ROOM_BUTTON": "Join Room",
     "ROOM_NAME_INPUT": "Enter room name",

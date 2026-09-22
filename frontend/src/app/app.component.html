@@ -1,6 +1,23 @@
-<router-outlet></router-outlet>
+<div class="layout-container" [class.dark-mode]="isDarkMode">
 
-<div>
-  <button (click)="switchLanguage('de')">🇩🇪 DE</button>
-  <button (click)="switchLanguage('en')">🇬🇧 EN</button>
+  <header>
+    <div class="logo">
+      <span class="logo-icon">⟨♦⟩</span> Logo
+    </div>
+    <div class="theme-toggle" (click)="toggleTheme()">
+      <div class="toggle-track">
+        <div class="toggle-knob" [class.active]="isDarkMode"></div>
+      </div>
+    </div>
+  </header>
+
+  <router-outlet></router-outlet>
+
+  <footer>
+    <div class="lang-toggle">
+      <button (click)="switchLanguage('de')"> DE </button>
+      <button (click)="switchLanguage('en')"> EN </button>
+    </div>
+  </footer>
+
 </div>

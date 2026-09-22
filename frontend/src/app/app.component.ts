@@ -11,7 +11,16 @@ import {RouterOutlet} from '@angular/router';
 export class AppComponent {
   private translateService = inject(TranslateService);
 
+  isDarkMode = false;
+  currentLang = 'de';
+
   switchLanguage(language: string) {
+    this.currentLang = language;
     this.translateService.use(language);
   }
+
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+  }
+
 }

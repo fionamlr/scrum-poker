@@ -1,0 +1,111 @@
+//TODO: BEM Struktur anschauen und evtl danach arbeiten --> bei jeder Komponente!?
+.layout-container {
+  /* Globale CSS Variablen (Helles Theme) */
+  --bg-color: #f5f4f0;
+  --text-main: #2c2e33;
+  --text-muted: #555;
+  --card-bg: #ffffff;
+  --primary-green: #3a756b;
+  --modal-bg: #ffffff;
+  --input-bg: #f5f4f0;
+
+  /* Farben für den Theme-Toggle (Hell) */
+  --toggle-track-bg: #2c2e33;
+  --toggle-knob-bg: #f5f4f0;
+
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 4rem;
+  box-sizing: border-box;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4rem;
+
+    .logo {
+      font-weight: 600;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      .toggle-track {
+        width: 48px;
+        height: 24px;
+        background: var(--toggle-track-bg); /* GEÄNDERT auf var() */
+        border-radius: 12px;
+        position: relative;
+        transition: background-color 0.3s;
+
+        .toggle-knob {
+          width: 18px;
+          height: 18px;
+          background: var(--toggle-knob-bg); /* GEÄNDERT auf var() */
+          border-radius: 50%;
+          position: absolute;
+          top: 3px;
+          left: 3px;
+          transition: transform 0.3s, background-color 0.3s;
+
+          &.active {
+            transform: translateX(24px);
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+    margin-top: auto;
+
+    .lang-toggle {
+      background: #333;
+      border-radius: 20px;
+      padding: 4px;
+      display: flex;
+
+      button {
+        background: transparent;
+        border: none;
+        color: #888;
+        padding: 0.4rem 1rem;
+        border-radius: 15px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        font-weight: bold;
+        transition: all 0.2s ease-in-out;
+
+        &.active {
+          background: var(--primary-green); /* GEÄNDERT auf var() */
+          color: white;
+        }
+      }
+    }
+  }
+
+  /* Dark-Mode Überschreibungen auf derselben Ebene wie header/footer */
+  &.dark-mode {
+    --bg-color: #1b1e23;
+    --text-main: #f5f4f0;
+    --text-muted: #9aa0a6;
+    --card-bg: #2a2e35;
+    --modal-bg: #293036;
+    --input-bg: transparent;
+
+    /* Invertiere den Toggle-Schalter im Darkmode */
+    --toggle-track-bg: #f5f4f0;
+    --toggle-knob-bg: #1b1e23;
+  }
+}

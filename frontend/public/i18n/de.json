@@ -3,7 +3,9 @@
     "CANCEL": "Abbrechen"
   },
 
-  "LOBBY": {
+  "STARTPAGE": {
+    "HEADLINE": "Agiles Schätzen",
+    "DESCRIPTION": "Starten oder joinen Sie eine Scrum Poker Session!",
     "CREATE_ROOM_BUTTON": "Raum erstellen",
     "JOIN_ROOM_BUTTON": "Raum beitreten",
     "ROOM_NAME_INPUT": "Raumname eingeben",

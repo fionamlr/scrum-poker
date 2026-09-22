@@ -1,0 +1,97 @@
+//TODO: BEM Struktur anschauen und evtl danach arbeiten --> bei jeder Komponente!?
+$primary-green: #3a756b;
+
+.hero-section {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.content-left {
+  flex: 1;
+  max-width: 500px;
+
+  h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: #222;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 1rem;
+
+    button {
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background-color: $primary-green;
+      color: white;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: $primary-green;
+      border: 1px solid $primary-green;
+    }
+  }
+}
+
+.content-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.cards-cluster {
+  position: relative;
+  width: 400px;
+  height: 400px;
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 15px;
+    position: relative;
+    z-index: 2;
+
+    .poker-card {
+      background: #fff;
+      height: 140px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 3rem;
+      font-weight: bold;
+      color: #333;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 2px 5px rgba(0,0,0,0.05);
+      border: 1px solid #eee;
+
+      &.card-pos-0 { transform: translateY(20px); }
+      &.card-pos-1 { transform: translateY(-10px); z-index: 3; }
+      &.card-pos-2 { transform: translateY(15px); }
+      &.card-pos-3 { transform: translateY(-5px); z-index: 4; }
+      &.card-pos-4 { transform: translateY(-15px); z-index: 5; }
+      &.card-pos-5 { transform: translateY(5px); }
+    }
+  }
+}
