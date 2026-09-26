@@ -4,7 +4,7 @@
   },
 
   "STARTPAGE": {
-    "HEADLINE": "Agile Estimation",
+    "HEADLINE": "Planning Poker",
     "DESCRIPTION": "Start or join a Scrum Poker session!",
     "CREATE_ROOM_BUTTON": "Create Room",
     "JOIN_ROOM_BUTTON": "Join Room",

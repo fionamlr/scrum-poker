@@ -3,6 +3,41 @@ html, body {
   padding: 0;
   width: 100%;
   height: 100%;
+
+  /* --- Helles Theme --- */
+  --bg-color: #f6f5fa;
+  --text-main: #2c2e33;
+  --text-muted: #5a5d64;
+  --primary-color: #7c5dfa;
+  --primary-color-hover: #6546e6;
+  --primary-text-contrast: #ffffff;
+  --card-bg: #ffffff;
+  --modal-bg: #ffffff;
+  --input-bg: #f6f5fa;
+  --border-color: #d1d5db;
+
+  /* Theme- & Language-Toggle Variablen */
+  --pill-bg: #2c2e33;
+  --knob-bg: #f6f5fa;
+  --lang-inactive-text: #9ca3af;
+
+  /* --- Dark-Mode Überschreibungen --- */
+  &--dark {
+    --bg-color: #16161e;
+    --text-main: #f4f3ec;
+    --text-muted: #b0b6be;
+    --primary-color: #b39ddb;
+    --primary-color-hover: #9575cd;
+    --primary-text-contrast: #16161e;
+    --card-bg: #22222e;
+    --modal-bg: #272736;
+    --input-bg: #16161e;
+    --border-color: #38384d;
+
+    --pill-bg: #2c2c3c;
+    --knob-bg: #b39ddb;
+    --lang-inactive-text: #9ca3af;
+  }
 }
 
 *, *::before, *::after {

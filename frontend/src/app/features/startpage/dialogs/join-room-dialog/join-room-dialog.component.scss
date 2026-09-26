@@ -1,0 +1,94 @@
+.join-room-dialog {
+  background-color: var(--modal-bg, #ffffff);
+  color: var(--text-main, #2c2e33);
+  padding: 2rem;
+  border-radius: 16px;
+  min-width: 340px;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &__title {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-main, #2c2e33);
+    text-align: center;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+    color: var(--text-main, #2c2e33);
+    background-color: var(--input-bg, #f6f5fa);
+    border: 2px solid var(--border-color, #d1d5db);
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    &::placeholder {
+      color: var(--text-muted, #888888);
+    }
+
+    &:focus {
+      border-color: var(--primary-color, #7c5dfa);
+      box-shadow: 0 0 0 3px rgba(124, 93, 250, 0.2);
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+
+  &__button {
+    flex: 1;
+    padding: 0.75rem 1.25rem;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &--submit {
+      background-color: var(--primary-color, #7c5dfa);
+      color: var(--primary-text-contrast, #ffffff);
+      border: 2px solid var(--primary-color, #7c5dfa);
+
+      &:hover:not(:disabled) {
+        background-color: var(--primary-color-hover, #6546e6);
+        border-color: var(--primary-color-hover, #6546e6);
+        transform: translateY(-1px);
+      }
+
+      &:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+    }
+
+    &--cancel {
+      background-color: transparent;
+      color: var(--text-muted, #5a5d64);
+      border: 2px solid var(--border-color, #d1d5db);
+
+      &:hover {
+        border-color: var(--text-main, #2c2e33);
+        color: var(--text-main, #2c2e33);
+      }
+    }
+  }
+}

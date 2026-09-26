@@ -1,17 +1,41 @@
-<form [formGroup]="joinRoomForm" (ngSubmit)="onSubmitJoinRoom()">
-  <div>
-    <input type="text" id="joinRoomId" formControlName="roomId" placeholder="{{ 'LOBBY.ROOM_ID_INPUT' | translate }}">
-  </div>
+<div class="join-room-dialog">
+  <h2 class="join-room-dialog__title">
+    {{ 'STARTPAGE.JOIN_ROOM_BUTTON' | translate }}
+  </h2>
 
-  <div>
-    <input type="text" id="playerNameId" formControlName="playerName" placeholder="{{ 'LOBBY.NAME_INPUT' | translate }}">
-  </div>
+  <form class="join-room-dialog__from" [formGroup]="joinRoomForm" (ngSubmit)="onSubmitJoinRoom()">
+    <div class="join-room-dialog__field">
+      <input
+        type="text"
+        class="join-room-dialog__input"
+        formControlName="roomId"
+        [placeholder]="'STARTPAGE.ROOM_ID_INPUT' | translate"
+      >
+    </div>
 
-  <button type="submit" [disabled]="joinRoomForm.invalid">
-    {{ 'LOBBY.JOIN_ROOM_BUTTON' | translate }}
-  </button>
+    <div class="join-room-dialog__field">
+      <input
+        type="text"
+        class="join-room-dialog__input"
+        formControlName="playerName"
+        [placeholder]="'STARTPAGE.CREATOR_NAME_INPUT' | translate"
+      >
+    </div>
 
-  <button type="button" (click)="closeDialog()">
-    {{ 'GENERAL.CANCEL' | translate }}
-  </button>
-</form>
+    <div class="join-room-dialog__actions">
+      <button
+        type="button"
+        class="join-room-dialog__button join-room-dialog__button--cancel"
+        (click)="closeDialog()">
+        {{ 'GENERAL.CANCEL' | translate }}
+      </button>
+
+      <button
+        type="submit"
+        class="join-room-dialog__button join-room-dialog__button--submit"
+        [disabled]="joinRoomForm.invalid">
+        {{ 'STARTPAGE.JOIN_ROOM_BUTTON' | translate }}
+      </button>
+    </div>
+  </form>
+</div>

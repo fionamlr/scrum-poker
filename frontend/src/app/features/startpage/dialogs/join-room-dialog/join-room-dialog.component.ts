@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatDialogRef} from '@angular/material/dialog';
 import {TranslatePipe} from '@ngx-translate/core';
@@ -14,9 +14,7 @@ import {TranslatePipe} from '@ngx-translate/core';
   standalone: true
 })
 export class JoinRoomDialogComponent {
-  constructor(
-    private dialogRef: MatDialogRef<JoinRoomDialogComponent>
-  ) {}
+  private dialogRef = inject(MatDialogRef<JoinRoomDialogComponent>)
 
   joinRoomForm = new FormGroup({
     roomId: new FormControl('', { nonNullable: true, validators: Validators.required }),

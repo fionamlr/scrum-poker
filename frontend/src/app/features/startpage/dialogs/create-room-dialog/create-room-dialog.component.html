@@ -1,17 +1,39 @@
-<form [formGroup]="createRoomForm" (ngSubmit)="onSubmitCreateRoom()">
-  <div>
-    <input type="text" id="roomNameId" formControlName="roomName" placeholder="{{ 'LOBBY.ROOM_NAME_INPUT' | translate }}">
-  </div>
+<div class="create-room-dialog">
+  <h2 class="create-room-dialog__title">
+    {{ 'STARTPAGE.CREATE_ROOM_BUTTON' | translate }}
+  </h2>
 
-  <div>
-    <input type="text" id="creatorNameId" formControlName="creatorName" placeholder="{{ 'LOBBY.NAME_INPUT' | translate }}">
-  </div>
+  <form class="create-room-dialog__form" [formGroup]="createRoomForm" (ngSubmit)="onSubmitCreateRoom()">
+    <div class="create-room-dialog__field">
+      <input
+        type="text"
+        class="create-room-dialog__input"
+        formControlName="roomName"
+        [placeholder]="'STARTPAGE.ROOM_NAME_INPUT' | translate">
+    </div>
 
-  <button type="submit" [disabled]="createRoomForm.invalid">
-    {{ 'LOBBY.CREATE_ROOM_BUTTON' | translate }}
-  </button>
+    <div class="create-room-dialog__field">
+      <input
+        type="text"
+        class="create-room-dialog__input"
+        formControlName="creatorName"
+        [placeholder]="'STARTPAGE.CREATOR_NAME_INPUT' | translate">
+    </div>
 
-  <button type="button" (click)="closeDialog()">
-    {{ 'GENERAL.CANCEL' | translate }}
-  </button>
-</form>
+    <div class="create-room-dialog__actions">
+      <button
+        type="button"
+        class="create-room-dialog__button create-room-dialog__button--cancel"
+        (click)="closeDialog()">
+        {{ 'GENERAL.CANCEL' | translate }}
+      </button>
+
+      <button
+        type="submit"
+        class="create-room-dialog__button create-room-dialog__button--submit"
+        [disabled]="createRoomForm.invalid">
+        {{ 'STARTPAGE.CREATE_ROOM_BUTTON' | translate }}
+      </button>
+    </div>
+  </form>
+</div>

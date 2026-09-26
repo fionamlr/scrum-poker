@@ -21,6 +21,7 @@ export class AppComponent {
 
   toggleTheme() {
     this.isDarkMode.update(value => !value);
+    document.body.classList.toggle('dark-mode', this.isDarkMode()); //TODO: Nochmal anschauen, nicht verstanden
   }
 
 }
