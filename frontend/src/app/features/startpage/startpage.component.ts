@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {RoomService} from '../../core/services/roomService';
 import {RoomDTO} from '../../core/models/room.dto';
 import {TranslatePipe} from '@ngx-translate/core';
@@ -8,7 +8,7 @@ import {CreateRoomDialogComponent} from './dialogs/create-room-dialog/create-roo
 import {JoinRoomDialogComponent} from './dialogs/join-room-dialog/join-room-dialog.component';
 
 @Component({
-  selector: 'app-lobby',
+  selector: 'app-startpage',
   imports: [
     TranslatePipe,
   ],
@@ -17,13 +17,11 @@ import {JoinRoomDialogComponent} from './dialogs/join-room-dialog/join-room-dial
   standalone: true
 })
 export class StartpageComponent {
-  estimationCards: string[] = ['1', '3', '5', '8', '13', '?'];
+  private dialog = inject(MatDialog);
+  private roomService = inject(RoomService);
+  private router = inject(Router);
 
-  constructor(
-    private dialog: MatDialog,
-    private roomService: RoomService,
-    private router: Router
-  ) {}
+  estimationCards: string[] = ['1', '3', '5', '8', '13', '?'];
 
   openCreateRoomDialog() {
     const dialogRef = this.dialog.open(CreateRoomDialogComponent);

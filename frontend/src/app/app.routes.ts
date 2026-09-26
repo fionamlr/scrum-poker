@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
 import {PokerTableComponent} from './features/poker-table/poker-table.component';
-import {LobbyComponent} from './features/lobby/lobby.component';
+import {StartpageComponent} from './features/startpage/startpage.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: LobbyComponent
+    component: StartpageComponent
   },
   {
     path: 'room/:id',

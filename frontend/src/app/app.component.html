@@ -1,22 +1,44 @@
-<div class="layout-container" [class.dark-mode]="isDarkMode">
+<div class="app-layout" [class.app-layout--dark]="isDarkMode()">
 
-  <header>
+  <header class="app-layout__header">
     <div class="logo">
-      <span class="logo-icon">⟨♦⟩</span> Logo
+      <span class="logo__icon">⟨♦⟩</span>
+      <span class="logo__text">Logo</span>
     </div>
-    <div class="theme-toggle" (click)="toggleTheme()">
-      <div class="toggle-track">
-        <div class="toggle-knob" [class.active]="isDarkMode"></div>
-      </div>
-    </div>
+
+    <button
+      type="button"
+      class="theme-toggle"
+      [class.theme-toggle--dark]="isDarkMode()"
+      (click)="toggleTheme()">
+      <span class="theme-toggle__track">
+        <span class="theme-toggle__icon theme-toggle__icon--sun">☀️</span>
+        <span class="theme-toggle__icon theme-toggle__icon--moon">🌙</span>
+        <span class="theme-toggle__knob" [class.theme-toggle__knob--active]="isDarkMode()"></span>
+      </span>
+    </button>
   </header>
 
-  <router-outlet></router-outlet>
+  <main class="app-layout__content">
+    <router-outlet></router-outlet>
+  </main>
 
-  <footer>
-    <div class="lang-toggle">
-      <button (click)="switchLanguage('de')"> DE </button>
-      <button (click)="switchLanguage('en')"> EN </button>
+  <footer class="app-layout__footer">
+    <div class="lang-switch">
+      <button
+        type="button"
+        class="lang-switch__button"
+        [class.lang-switch__button--active]="currentLang() === 'de'"
+        (click)="switchLanguage('de')">
+        DE
+      </button>
+      <button
+        type="button"
+        class="lang-switch__button"
+        [class.lang-switch__button--active]="currentLang() === 'en'"
+        (click)="switchLanguage('en')">
+        EN
+      </button>
     </div>
   </footer>
 

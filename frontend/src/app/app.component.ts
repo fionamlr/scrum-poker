@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {RouterOutlet} from '@angular/router';
 
@@ -11,16 +11,16 @@ import {RouterOutlet} from '@angular/router';
 export class AppComponent {
   private translateService = inject(TranslateService);
 
-  isDarkMode = false;
-  currentLang = 'de';
+  isDarkMode = signal(false);
+  currentLang = signal('de');
 
   switchLanguage(language: string) {
-    this.currentLang = language;
+    this.currentLang.set(language);
     this.translateService.use(language);
   }
 
   toggleTheme() {
-    this.isDarkMode = !this.isDarkMode;
+    this.isDarkMode.update(value => !value);
   }
 
 }

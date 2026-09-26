@@ -1,31 +1,42 @@
-<main class="hero-section">
-  <div class="content-left">
-    <h1> {{ 'STARTPAGE.HEADLINE' | translate }} <br></h1>
-    <p> {{ 'STARTPAGE.DESCRIPTION' | translate }} </p>
+<section class="startpage">
+  <div class="startpage__content">
+    <h1 class="startpage__headline">
+      {{ 'STARTPAGE.HEADLINE' | translate }}
+    </h1>
+    <p class="startpage__description">
+      {{ 'STARTPAGE.DESCRIPTION' | translate }}
+    </p>
 
-    <div class="action-buttons">
+    <div class="startpage__actions">
       <button
-        class="btn-primary"
+        type="button"
+        class="startpage__button startpage__button--primary"
         (click)="openCreateRoomDialog()">
         {{ 'STARTPAGE.CREATE_ROOM_BUTTON' | translate }}
       </button>
       <button
-        class="btn-secondary"
+        type="button"
+        class="startpage__button startpage__button--secondary"
         (click)="openJoinRoomDialog()">
         {{ 'STARTPAGE.JOIN_ROOM_BUTTON' | translate }}
       </button>
     </div>
   </div>
 
-  <div class="content-right">
+  <div class="startpage__visual">
     <div class="cards-cluster">
-      <div class="card-grid">
+      <span class="cards-cluster__shape cards-cluster__shape--orange"></span>
+      <span class="cards-cluster__shape cards-cluster__shape--purple"></span>
+      <span class="cards-cluster__shape cards-cluster__shape--blue"></span>
+      <span class="cards-cluster__shape cards-cluster__shape--mint"></span>
+
+      <div class="cards-cluster__grid">
         @for (card of estimationCards; track $index) {
-        <div class="poker-card" [class]="'card-pos-' + $index">
-          {{ card }}
-        </div>
+          <div class="cards-cluster__card cards-cluster__card--pos-{{ $index }}">
+            {{ card }}
+          </div>
         }
       </div>
     </div>
   </div>
-</main>
+</section>

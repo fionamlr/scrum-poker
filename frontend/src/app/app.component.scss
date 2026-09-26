@@ -1,111 +1,161 @@
-//TODO: BEM Struktur anschauen und evtl danach arbeiten --> bei jeder Komponente!?
-.layout-container {
-  /* Globale CSS Variablen (Helles Theme) */
-  --bg-color: #f5f4f0;
+.app-layout {
+  /* --- Helles Theme --- */
+  --bg-color: #f6f5fa;
   --text-main: #2c2e33;
-  --text-muted: #555;
+  --text-muted: #5a5d64;
+  --primary-color: #7c5dfa;
+  --primary-color-hover: #6546e6;
+  --primary-text-contrast: #ffffff;
   --card-bg: #ffffff;
-  --primary-green: #3a756b;
   --modal-bg: #ffffff;
-  --input-bg: #f5f4f0;
+  --input-bg: #f6f5fa;
+  --border-color: #d1d5db;
 
-  /* Farben für den Theme-Toggle (Hell) */
-  --toggle-track-bg: #2c2e33;
-  --toggle-knob-bg: #f5f4f0;
+  /* Theme- & Language-Toggle Variablen */
+  --pill-bg: #2c2e33;
+  --knob-bg: #f6f5fa;
+  --lang-inactive-text: #9ca3af;
+
+  /* --- Dark-Mode Überschreibungen --- */
+  &--dark {
+    --bg-color: #16161e;
+    --text-main: #f4f3ec;
+    --text-muted: #b0b6be;
+    --primary-color: #b39ddb;
+    --primary-color-hover: #9575cd;
+    --primary-text-contrast: #16161e;
+    --card-bg: #22222e;
+    --modal-bg: #272736;
+    --input-bg: #16161e;
+    --border-color: #38384d;
+
+    --pill-bg: #2c2c3c;
+    --knob-bg: #b39ddb;
+    --lang-inactive-text: #9ca3af;
+  }
 
   min-height: 100vh;
   background-color: var(--bg-color);
   color: var(--text-main);
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s ease, color 0.3s ease;
   display: flex;
   flex-direction: column;
   padding: 2rem 4rem;
   box-sizing: border-box;
 
-  header {
+  &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 4rem;
-
-    .logo {
-      font-weight: 600;
-      font-size: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .theme-toggle {
-      cursor: pointer;
-      .toggle-track {
-        width: 48px;
-        height: 24px;
-        background: var(--toggle-track-bg); /* GEÄNDERT auf var() */
-        border-radius: 12px;
-        position: relative;
-        transition: background-color 0.3s;
-
-        .toggle-knob {
-          width: 18px;
-          height: 18px;
-          background: var(--toggle-knob-bg); /* GEÄNDERT auf var() */
-          border-radius: 50%;
-          position: absolute;
-          top: 3px;
-          left: 3px;
-          transition: transform 0.3s, background-color 0.3s;
-
-          &.active {
-            transform: translateX(24px);
-          }
-        }
-      }
-    }
   }
 
-  footer {
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__footer {
     display: flex;
     justify-content: center;
     padding-top: 2rem;
     margin-top: auto;
+  }
+}
 
-    .lang-toggle {
-      background: #333;
-      border-radius: 20px;
-      padding: 4px;
-      display: flex;
+/* =========================================
+   BLOCK: Logo
+   ========================================= */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--text-main);
 
-      button {
-        background: transparent;
-        border: none;
-        color: #888;
-        padding: 0.4rem 1rem;
-        border-radius: 15px;
-        cursor: pointer;
-        font-size: 0.8rem;
-        font-weight: bold;
-        transition: all 0.2s ease-in-out;
+  &__icon {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+  }
+}
 
-        &.active {
-          background: var(--primary-green); /* GEÄNDERT auf var() */
-          color: white;
-        }
-      }
-    }
+/* =========================================
+   BLOCK: Theme-Toggle (Sonne / Mond)
+   ========================================= */
+.theme-toggle {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  &__track {
+    width: 60px;
+    height: 30px;
+    background-color: var(--pill-bg);
+    border-radius: 999px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7px;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
   }
 
-  /* Dark-Mode Überschreibungen auf derselben Ebene wie header/footer */
-  &.dark-mode {
-    --bg-color: #1b1e23;
-    --text-main: #f5f4f0;
-    --text-muted: #9aa0a6;
-    --card-bg: #2a2e35;
-    --modal-bg: #293036;
-    --input-bg: transparent;
+  &__icon {
+    font-size: 0.85rem;
+    z-index: 1;
+    user-select: none;
+    line-height: 1;
+  }
 
-    /* Invertiere den Toggle-Schalter im Darkmode */
-    --toggle-track-bg: #f5f4f0;
-    --toggle-knob-bg: #1b1e23;
+  &__knob {
+    width: 24px;
+    height: 24px;
+    background-color: var(--knob-bg);
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    z-index: 2;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+
+    &--active {
+      transform: translateX(30px);
+    }
+  }
+}
+
+/* =========================================
+   BLOCK: Language-Switch (DE / EN)
+   ========================================= */
+.lang-switch {
+  background-color: var(--pill-bg);
+  border-radius: 999px;
+  padding: 4px;
+  display: inline-flex;
+  gap: 4px;
+
+  &__button {
+    background: transparent;
+    border: none;
+    color: var(--lang-inactive-text);
+    padding: 0.4rem 1.1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 700;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    &:hover:not(&--active) {
+      color: #ffffff;
+    }
+
+    &--active {
+      background-color: var(--primary-color);
+      color: var(--primary-text-contrast);
+    }
   }
 }

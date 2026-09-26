@@ -1,97 +1,189 @@
-//TODO: BEM Struktur anschauen und evtl danach arbeiten --> bei jeder Komponente!?
-$primary-green: #3a756b;
-
-.hero-section {
+/* =========================================
+   BLOCK: Startpage
+   ========================================= */
+.startpage {
   display: flex;
   flex: 1;
   align-items: center;
   justify-content: space-between;
+  gap: 4rem;
   width: 100%;
-}
+  max-width: 1200px;
+  margin: 0 auto;
 
-.content-left {
-  flex: 1;
-  max-width: 500px;
+  &__content {
+    flex: 1;
+    max-width: 520px;
+  }
 
-  h1 {
+  &__headline {
     font-size: 3.5rem;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-    color: #222;
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 0 0 1.5rem 0;
+    color: var(--text-main);
+    transition: color 0.3s ease;
   }
 
-  p {
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 2.5rem;
+  &__description {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin: 0 0 2.5rem 0;
     line-height: 1.6;
+    transition: color 0.3s ease;
   }
 
-  .action-buttons {
+  &__actions {
     display: flex;
-    gap: 1rem;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
 
-    button {
-      padding: 0.8rem 1.5rem;
-      border-radius: 25px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      transition: all 0.2s;
+  &__button {
+    padding: 0.85rem 2rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &--primary {
+      background-color: var(--primary-color);
+      color: var(--primary-text-contrast);
+      border: 2px solid var(--primary-color);
+
+      &:hover {
+        background-color: var(--primary-color-hover);
+        border-color: var(--primary-color-hover);
+        transform: translateY(-2px);
+      }
     }
 
-    .btn-primary {
-      background-color: $primary-green;
-      color: white;
-    }
-
-    .btn-secondary {
+    &--secondary {
       background-color: transparent;
-      color: $primary-green;
-      border: 1px solid $primary-green;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+
+      &:hover {
+        background-color: var(--primary-color);
+        color: var(--primary-text-contrast);
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  &__visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    text-align: center;
+
+    &__actions {
+      justify-content: center;
     }
   }
 }
 
-.content-right {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
+/* =========================================
+   BLOCK: Cards-Cluster
+   ========================================= */
 .cards-cluster {
   position: relative;
-  width: 400px;
-  height: 400px;
+  padding: 2rem;
 
-  .card-grid {
+  &__grid {
     display: grid;
-    grid-template-columns: repeat(3, 100px);
-    gap: 15px;
+    grid-template-columns: repeat(3, 110px);
+    gap: 18px;
     position: relative;
     z-index: 2;
+  }
 
-    .poker-card {
-      background: #fff;
-      height: 140px;
-      border-radius: 8px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 3rem;
-      font-weight: bold;
-      color: #333;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 2px 5px rgba(0,0,0,0.05);
-      border: 1px solid #eee;
+  &__card {
+    background-color: var(--card-bg);
+    height: 150px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: var(--text-main);
+    border: 2px solid var(--text-main);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+    position: relative;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 
-      &.card-pos-0 { transform: translateY(20px); }
-      &.card-pos-1 { transform: translateY(-10px); z-index: 3; }
-      &.card-pos-2 { transform: translateY(15px); }
-      &.card-pos-3 { transform: translateY(-5px); z-index: 4; }
-      &.card-pos-4 { transform: translateY(-15px); z-index: 5; }
-      &.card-pos-5 { transform: translateY(5px); }
+    /* Deine versetzten Kartenpositionen als BEM-Modifier */
+    &--pos-0 { transform: translateY(20px); }
+    &--pos-1 { transform: translateY(-10px); z-index: 3; }
+    &--pos-2 { transform: translateY(15px); }
+    &--pos-3 { transform: translateY(-5px); z-index: 4; }
+    &--pos-4 { transform: translateY(-15px); z-index: 5; }
+    &--pos-5 { transform: translateY(5px); }
+
+    /* Stapel-Effekt */
+    &--pos-3::before,
+    &--pos-4::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: var(--card-bg);
+      border: 2px solid var(--text-main);
+      border-radius: 12px;
+      z-index: -1;
+      transform: translate(8px, -8px);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+  }
+
+  /* Dekorative geometrische Elemente um die Karten herum */
+  &__shape {
+    position: absolute;
+    z-index: 1;
+    opacity: 0.8;
+
+    &--orange {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background-color: #f4a28c;
+      top: 5px;
+      left: 30%;
+    }
+
+    &--purple {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background-color: #b39ddb;
+      top: 40%;
+      left: 0;
+    }
+
+    &--blue {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      background-color: #8cc8e8;
+      transform: rotate(25deg);
+      top: 10px;
+      right: 22%;
+    }
+
+    &--mint {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      background-color: #7ee0c6;
+      bottom: 25%;
+      right: 0;
     }
   }
 }
