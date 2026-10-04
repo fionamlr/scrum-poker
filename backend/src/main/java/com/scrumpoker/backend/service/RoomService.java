@@ -39,6 +39,13 @@ public class RoomService {
         Room room = roomRepository.findById(roomId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Room not found"));
             RoomDTO roomDTO = new RoomDTO();
             roomDTO.setRoomName(room.getRoomName());
+
+            for (User participant: room.getParticipants()) {
+                if (participant.getRole() == Role.MODERATOR) {
+                    roomDTO.setCreatorName(participant.getName());
+                    break;
+                }
+            }
             return roomDTO;
     }
 
