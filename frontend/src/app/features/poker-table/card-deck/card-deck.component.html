@@ -1,0 +1,11 @@
+<div class="card-deck">
+  @for (card of cards(); track card) {
+    <button
+      type="button"
+      class="card-deck__card"
+      [class.card-deck__card--selected]="selectedCard() === card"
+      (click)="onSelect(card)">
+      {{ card }}
+    </button>
+  }
+</div>

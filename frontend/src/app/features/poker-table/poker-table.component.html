@@ -1,13 +1,21 @@
-<div>
-  <h1>
-    {{ 'POKER_TABLE.TITLE' | translate }}
-  </h1>
+@if (currentRoomData()) {
+  <div>
+    <h1>{{ 'POKER_TABLE.TITLE' | translate }}</h1>
+    <h2>{{ 'POKER_TABLE.ROOM_TEXT' | translate }}{{ currentRoomData()!.roomName }}</h2>
+    <h2>{{ 'POKER_TABLE.CREATOR_TEXT' | translate }}{{ currentRoomData()!.creatorName }}</h2>
 
-  <h2>
-    {{ 'POKER_TABLE.ROOM_TEXT' | translate }}{{ roomName() }}
-  </h2>
-
-  <h2>
-     {{ 'POKER_TABLE.CREATOR_TEXT' | translate }}{{ creatorName() }}
-  </h2>
-</div>
+    <h3>Spieler am Tisch:</h3>
+    <ul>
+      @for (player of currentRoomData()!.playerList; track player.userName) {
+        <li>{{ player.userName }} ({{ player.role }})</li>
+      }
+    </ul>
+    <app-card-deck
+      [cards]="estimationCards"
+      [selectedCard]="selectedCard()"
+      (cardSelected)="selectCard($event)">
+    </app-card-deck>
+  </div>
+} @else {
+  <p>Lade Raumdaten...</p>
+}

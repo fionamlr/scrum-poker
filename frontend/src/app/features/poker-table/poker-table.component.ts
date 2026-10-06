@@ -1,25 +1,27 @@
-import {Component, OnInit, signal} from '@angular/core';
+import {Component, inject, OnInit, signal} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {RoomService} from '../../core/services/roomService';
 import {TranslatePipe} from '@ngx-translate/core';
+import {RoomDTO} from '../../core/models/room.dto';
+import {CardDeckComponent} from './card-deck/card-deck.component';
 
 @Component({
   selector: 'app-poker-table',
   imports: [
-    TranslatePipe
+    TranslatePipe,
+    CardDeckComponent,
   ],
   templateUrl: './poker-table.component.html',
   styleUrl: './poker-table.component.scss',
   standalone: true
 })
 export class PokerTableComponent implements OnInit{
-  roomName = signal<string>('');
-  creatorName = signal<string>('');
+  private activatedRoute = inject(ActivatedRoute);
+  private roomService = inject(RoomService);
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private roomService: RoomService
-  ) {}
+  currentRoomData = signal<RoomDTO | null>(null);
+  estimationCards: string[] = ['0', '1', '2', '3', '5', '8', '13', '?'];
+  selectedCard = signal<string | null>(null);
 
   ngOnInit(): void {
     const roomId = this.activatedRoute.snapshot.paramMap.get('id');
@@ -27,8 +29,7 @@ export class PokerTableComponent implements OnInit{
     if (roomId) {
       this.roomService.getRoom(roomId).subscribe({
         next: (roomData) => {
-          this.roomName.set(roomData.roomName);
-          this.creatorName.set(roomData.creatorName);
+          this.currentRoomData.set(roomData);
         },
         error: (error) => {
           console.error('Error loading the room: ', error);
@@ -37,4 +38,8 @@ export class PokerTableComponent implements OnInit{
     }
   }
 
+  selectCard(card: string) {
+    this.selectedCard.set(card);
+    console.log("Hier kommt Websocket zum BE");
+  }
 }
