@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {CreateRoomDialogComponent} from './dialogs/create-room-dialog/create-room-dialog.component';
 import {JoinRoomDialogComponent} from './dialogs/join-room-dialog/join-room-dialog.component';
+import {CreateRoomDTO} from '../../core/models/createRoom.dto';
 
 @Component({
   selector: 'app-startpage',
@@ -28,9 +29,9 @@ export class StartpageComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        const newRoomDTO: RoomDTO = {
+        const newRoomDTO: CreateRoomDTO = {
           roomName: result.roomName,
-          creatorName: result.creatorName
+          creatorName: result.creatorName,
         };
         this.roomService.createRoom(newRoomDTO).subscribe({
           next: (generatedUUID) => {
@@ -47,9 +48,16 @@ export class StartpageComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('Methode wird noch implementiert');
+        const joinDto = { playerName: result.playerName };
+        this.roomService.joinRoom(result.roomId, joinDto).subscribe({
+          next: () => {
+            this.router.navigate(['/room', result.roomId]);
+          },
+          error: (error) => {
+            console.error('Fehler beim Beitreten des Raums:', error);
+          }
+        });
       }
     });
   }
-
 }

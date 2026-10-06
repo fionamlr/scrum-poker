@@ -1,5 +1,6 @@
 package com.scrumpoker.backend.controller;
 
+import com.scrumpoker.backend.dto.JoinRoomDTO;
 import com.scrumpoker.backend.dto.RoomDTO;
 import com.scrumpoker.backend.service.RoomService;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,7 +16,6 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/rooms")
-@CrossOrigin(origins = "http://localhost:4200")
 public class RoomController {
     private final RoomService roomService;
 
@@ -37,4 +37,10 @@ public class RoomController {
     public UUID createRoom(@RequestBody RoomDTO roomDTO) { //@RequestBody = Daten aus dem Frontend, die mit gesendet werden
         return roomService.createRoom(roomDTO);
     }
+
+    @PostMapping("/{roomId}/join")
+    public RoomDTO joinRoom(@PathVariable UUID roomId, @RequestBody JoinRoomDTO joinRequest) {
+        return roomService.joinRoom(roomId, joinRequest);
+    }
+
 }

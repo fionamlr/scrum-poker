@@ -3,12 +3,9 @@ package com.scrumpoker.backend.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
-public class RoomDTO {
+public class CreateRoomDTO {
     private String roomName;
     private String creatorName;
-    private List<UserDTO> playerList;
 }

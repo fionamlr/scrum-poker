@@ -1,6 +1,8 @@
 package com.scrumpoker.backend.service;
 
+import com.scrumpoker.backend.dto.JoinRoomDTO;
 import com.scrumpoker.backend.dto.RoomDTO;
+import com.scrumpoker.backend.dto.UserDTO;
 import com.scrumpoker.backend.entity.Room;
 import com.scrumpoker.backend.entity.User;
 import com.scrumpoker.backend.enums.Role;
@@ -37,16 +39,24 @@ public class RoomService {
 
     public RoomDTO getRoom(UUID roomId) {
         Room room = roomRepository.findById(roomId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Room not found"));
-            RoomDTO roomDTO = new RoomDTO();
-            roomDTO.setRoomName(room.getRoomName());
 
-            for (User participant: room.getParticipants()) {
-                if (participant.getRole() == Role.MODERATOR) {
-                    roomDTO.setCreatorName(participant.getName());
-                    break;
-                }
+        RoomDTO roomDTO = new RoomDTO();
+        roomDTO.setRoomName(room.getRoomName());
+
+        List<UserDTO> playerList = new ArrayList<>();
+
+        for (User participant : room.getParticipants()) {
+            UserDTO userDTO = new UserDTO();
+            userDTO.setUserName(participant.getName());
+            userDTO.setRole(participant.getRole());
+            playerList.add(userDTO);
+
+            if (participant.getRole() == Role.MODERATOR) {
+                roomDTO.setCreatorName(participant.getName());
             }
-            return roomDTO;
+        }
+        roomDTO.setPlayerList(playerList);
+        return roomDTO;
     }
 
     public List<RoomDTO> getRooms() {
@@ -58,5 +68,20 @@ public class RoomService {
             roomDTOs.add(roomDTO);
         }
         return roomDTOs;
+    }
+
+    public RoomDTO joinRoom(UUID roomId, JoinRoomDTO joinRequest) {
+        Room room = roomRepository.findById(roomId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Room not found"));
+
+        User newPlayer = new User();
+        newPlayer.setName(joinRequest.getPlayerName());
+        newPlayer.setRole(Role.PLAYER);
+
+        room.getParticipants().add(newPlayer);
+
+        roomRepository.save(room);
+
+        return getRoom(roomId);
     }
 }
