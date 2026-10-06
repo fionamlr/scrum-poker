@@ -1,21 +1,31 @@
 @if (currentRoomData()) {
-  <div>
-    <h1>{{ 'POKER_TABLE.TITLE' | translate }}</h1>
-    <h2>{{ 'POKER_TABLE.ROOM_TEXT' | translate }}{{ currentRoomData()!.roomName }}</h2>
-    <h2>{{ 'POKER_TABLE.CREATOR_TEXT' | translate }}{{ currentRoomData()!.creatorName }}</h2>
+  <div class="poker-view">
 
-    <h3>Spieler am Tisch:</h3>
-    <ul>
-      @for (player of currentRoomData()!.playerList; track player.userName) {
-        <li>{{ player.userName }} ({{ player.role }})</li>
-      }
-    </ul>
-    <app-card-deck
-      [cards]="estimationCards"
-      [selectedCard]="selectedCard()"
-      (cardSelected)="selectCard($event)">
-    </app-card-deck>
+    <main class="poker-view__main">
+      <header class="poker-view__header">
+        <h1>{{ currentRoomData()!.roomName }}</h1>
+        <span class="badge">Moderator: {{ currentRoomData()!.creatorName }}</span>
+      </header>
+
+      <!-- TODO: Hier kommt spaeter der Bereich hin, wo die aufgedeckten Karten liegen -->
+      <div class="poker-view__board-placeholder">
+        {{ 'POKER_TABLE.WAITING_HINT' | translate }}
+      </div>
+
+      <div class="poker-view__deck">
+        <app-card-deck
+          [cards]="estimationCards"
+          [selectedCard]="selectedCard()"
+          (cardSelected)="selectCard($event)">
+        </app-card-deck>
+      </div>
+    </main>
+
+    <aside class="poker-view__sidebar">
+      <app-player-list [players]="currentRoomData()?.playerList ?? []"></app-player-list>
+    </aside>
+
   </div>
 } @else {
-  <p>Lade Raumdaten...</p>
+  <p> {{ 'POKER_TABLE.LOADING_ROOMDATA' | translate }} </p>
 }

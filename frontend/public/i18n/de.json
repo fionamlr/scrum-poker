@@ -1,6 +1,7 @@
 {
   "GENERAL": {
-    "CANCEL": "Abbrechen"
+    "CANCEL": "Abbrechen",
+    "PLAYER": "Spielende"
   },
 
   "STARTPAGE": {
@@ -16,6 +17,8 @@
   "POKER_TABLE": {
     "TITLE": "Willkommen zum Scrum Poker!",
     "ROOM_TEXT": "Raum: ",
-    "CREATOR_TEXT": "Moderation: "
+    "CREATOR_TEXT": "Moderation: ",
+    "WAITING_HINT": "Warte auf Kartenauswahl...",
+    "LOADING_ROOMDATA": "Lade Raumdaten..."
   }
 }

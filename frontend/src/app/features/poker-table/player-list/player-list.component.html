@@ -1,0 +1,19 @@
+<div class="player-list">
+  <h3 class="player-list__title"> {{ 'GENERAL.PLAYER' | translate }} </h3>
+  <ul class="player-list__items">
+    @for (player of players(); track player.userName) {
+      <li class="player-list__item">
+        <div class="player-list__info">
+          <div class="player-list__avatar">
+            {{ player.userName.charAt(0) | uppercase }}
+          </div>
+          <span class="player-list__name">{{ player.userName }}</span>
+        </div>
+        <!-- TODO: Aktuell statisch, spaeter dynamisch über das Backend -->
+        <div class="player-list__status">
+          ⏳ <!-- TODO: Spaeter tauschen gegen gruenen Harken oder so, wenn der Spieler gewählt hat -->
+        </div>
+      </li>
+    }
+  </ul>
+</div>

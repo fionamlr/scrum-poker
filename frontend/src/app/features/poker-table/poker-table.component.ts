@@ -4,12 +4,14 @@ import {RoomService} from '../../core/services/roomService';
 import {TranslatePipe} from '@ngx-translate/core';
 import {RoomDTO} from '../../core/models/room.dto';
 import {CardDeckComponent} from './card-deck/card-deck.component';
+import {PlayerListComponent} from './player-list/player-list.component';
 
 @Component({
   selector: 'app-poker-table',
   imports: [
     TranslatePipe,
     CardDeckComponent,
+    PlayerListComponent
   ],
   templateUrl: './poker-table.component.html',
   styleUrl: './poker-table.component.scss',

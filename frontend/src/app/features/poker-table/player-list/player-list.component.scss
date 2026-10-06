@@ -1,0 +1,69 @@
+.player-list {
+  background-color: var(--card-bg, #f4f5f7);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  height: 100%;
+  min-height: 400px;
+
+  &__title {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    color: var(--text-main, #333);
+    border-bottom: 2px solid var(--border-color, #eaeaea);
+    padding-bottom: 0.5rem;
+  }
+
+  &__items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  &__avatar {
+    width: 32px;
+    height: 32px;
+    background-color: var(--primary-color, #7c5dfa);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  &__name {
+    font-weight: 600;
+    color: var(--text-main, #333);
+  }
+
+  &__status {
+    font-size: 1.2rem;
+    color: #a0a0a0; /* Grau für ausstehend */
+
+    &--ready {
+      color: #28a745; /* Grün für fertig */
+    }
+  }
+}
