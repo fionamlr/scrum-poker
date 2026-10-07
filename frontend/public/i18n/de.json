@@ -19,6 +19,7 @@
     "ROOM_TEXT": "Raum: ",
     "CREATOR_TEXT": "Moderation: ",
     "WAITING_HINT": "Warte auf Kartenauswahl...",
-    "LOADING_ROOMDATA": "Lade Raumdaten..."
+    "LOADING_ROOMDATA": "Lade Raumdaten...",
+    "BUTTON_SELECT_CARD": "Karte auswählen"
   }
 }

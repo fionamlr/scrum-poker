@@ -1,4 +1,4 @@
-import {Component, computed, input} from '@angular/core';
+import {Component, computed, input, signal} from '@angular/core';
 import {UserDto} from '../../../core/models/user.dto';
 import {UpperCasePipe} from '@angular/common';
 import {TranslatePipe} from '@ngx-translate/core';
@@ -15,4 +15,5 @@ import {TranslatePipe} from '@ngx-translate/core';
 })
 export class PlayerListComponent {
   players = input.required<UserDto[]>();
+  playerCount = computed(() => this.players().length)
 }

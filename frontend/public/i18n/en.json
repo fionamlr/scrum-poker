@@ -19,6 +19,7 @@
     "ROOM_TEXT": "Room: ",
     "CREATOR_TEXT": "Creator: ",
     "WAITING_HINT": "Waiting for card selection...",
-    "LOADING_ROOMDATA": "Load Room Data..."
+    "LOADING_ROOMDATA": "Load Room Data...",
+    "BUTTON_SELECT_CARD": "Select Card"
   }
 }

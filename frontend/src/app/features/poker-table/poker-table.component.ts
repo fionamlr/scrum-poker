@@ -22,7 +22,7 @@ export class PokerTableComponent implements OnInit{
   private roomService = inject(RoomService);
 
   currentRoomData = signal<RoomDTO | null>(null);
-  estimationCards: string[] = ['0', '1', '2', '3', '5', '8', '13', '?'];
+  estimationCards: string[] = ['1', '2', '3', '5', '8', '13', '?', '☕︎'];
   selectedCard = signal<string | null>(null);
 
   ngOnInit(): void {
@@ -42,6 +42,9 @@ export class PokerTableComponent implements OnInit{
 
   selectCard(card: string) {
     this.selectedCard.set(card);
-    console.log("Hier kommt Websocket zum BE");
+  }
+
+  lockInCard() {
+    console.log('Karte eingeloggt:', this.selectedCard())
   }
 }

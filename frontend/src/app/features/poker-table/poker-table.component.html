@@ -18,6 +18,13 @@
           [selectedCard]="selectedCard()"
           (cardSelected)="selectCard($event)">
         </app-card-deck>
+
+        <button
+          class="poker-view__submit-button"
+          [disabled]="selectedCard() === null"
+          (click)="lockInCard()">
+          {{ 'POKER_TABLE.BUTTON_SELECT_CARD' | translate }}
+        </button>
       </div>
     </main>
 

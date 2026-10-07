@@ -1,5 +1,5 @@
 <div class="player-list">
-  <h3 class="player-list__title"> {{ 'GENERAL.PLAYER' | translate }} </h3>
+  <h3 class="player-list__title"> {{ 'GENERAL.PLAYER' | translate }} ({{ playerCount() }}) </h3>
   <ul class="player-list__items">
     @for (player of players(); track player.userName) {
       <li class="player-list__item">
